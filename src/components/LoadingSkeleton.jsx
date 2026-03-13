@@ -1,5 +1,5 @@
 const PhotoSkeleton = () => (
-  <div className="bg-white rounded-[1.5rem] overflow-hidden border border-gray-100/50 shadow-sm animate-pulse">
+  <div className="bg-white rounded-3xl sm:rounded-[1.5rem] overflow-hidden border border-gray-100 ring-1 ring-gray-900/[0.03] shadow-sm animate-pulse">
     {/* Image placeholder */}
     <div className="aspect-[4/5] bg-gray-200" />
     
@@ -19,7 +19,7 @@ const PhotoSkeleton = () => (
 
 const LoadingSkeleton = () => {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
       {[...Array(8)].map((_, i) => (
         <PhotoSkeleton key={i} />
       ))}

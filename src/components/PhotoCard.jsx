@@ -2,7 +2,7 @@ import { HeartIcon } from "./HeartIcon";
 
 const PhotoCard = ({ photo, isFavourited, onToggleFavourite, onClick }) => {
   return (
-    <div className="relative z-0 bg-white rounded-2xl sm:rounded-[1.5rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100/50 sm:hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-500 transform sm:hover:-translate-y-2">
+    <div className="relative z-0 bg-white rounded-3xl sm:rounded-[1.5rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 sm:border-gray-100/50 ring-1 ring-gray-900/[0.03] sm:hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-500 transform sm:hover:-translate-y-2">
       <div 
         className="group relative overflow-hidden aspect-[4/5] cursor-zoom-in"
         onClick={() => onClick(photo)}
