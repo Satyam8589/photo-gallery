@@ -25,7 +25,7 @@ A premium, high-performance Photo Gallery web application built with **React**, 
 photo-gallery/
 ├── src/
 │   ├── components/         # UI Components (Gallery, PhotoCard, Modal, etc.)
-│   ├── hooks/              # Custom Hooks (useFetchPhotos)
+│   ├── hooks/              # Custom Hooks (useFetchPhotos, usePhotoDownload, usePhotoSearch)
 │   ├── reducers/           # State logic (favouritesReducer)
 │   ├── App.jsx             # Main logic & Navbar hide/show transitions
 │   ├── main.jsx            # App entry point
@@ -34,28 +34,11 @@ photo-gallery/
 └── tailwind.config.js      # Custom theme & styling tokens
 ```
 
-## 📦 Getting Started
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/photo-gallery.git
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-
 ## 🎥 Video Explanation
 
 The following points are covered in the mandatory screen recording:
 1. **Live Demo**: Showcasing API fetch, real-time search, and persistent favourites.
-2. **Custom Hooks**: Walkthrough of `useFetchPhotos`.
+2. **Custom Hooks**: Walkthrough of `useFetchPhotos`, `usePhotoDownload`, `usePhotoSearch`.
 3. **State Management**: Explanation of why `useReducer` was used over `useState`.
 4. **Performance**: Breakdown of `useCallback` and `useMemo` logic to prevent unnecessary re-renders.
 
