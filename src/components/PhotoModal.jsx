@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
+import { HeartIcon } from "./HeartIcon";
+import usePhotoDownload from "../hooks/usePhotoDownload";
 
-const PhotoModal = ({ photo, onClose }) => {
+const PhotoModal = ({ photo, onClose, isFavourited, onToggleFavourite }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const { downloadPhoto, downloading } = usePhotoDownload();
 
   useEffect(() => {
     setIsLoaded(false);
@@ -56,15 +59,15 @@ const PhotoModal = ({ photo, onClose }) => {
           </div>
 
           {/* Details Section */}
-          <div className="p-8 md:w-80 flex flex-col items-start">
-            <div>
+          <div className="p-8 md:w-80 flex flex-col justify-between">
+            <div className="w-full">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-violet-200">
                   {photo.author.charAt(0).toUpperCase()}
                 </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900">{photo.author}</h3>
-                  <p className="text-sm text-gray-500 text-nowrap">Photographer</p>
+                <div className="min-w-0">
+                  <h3 className="text-xl font-bold text-gray-900 truncate">{photo.author}</h3>
+                  <p className="text-sm text-gray-500">Photographer</p>
                 </div>
               </div>
               
@@ -73,6 +76,47 @@ const PhotoModal = ({ photo, onClose }) => {
                   This stunning photograph captured by <strong>{photo.author}</strong> is part of the curated collections from Picsum Photos.
                 </p>
               </div>
+            </div>
+
+            {/* Action Buttons in Modal */}
+            <div className="mt-8 pt-6 border-t border-gray-100 flex flex-col gap-3">
+              <button
+                onClick={() => onToggleFavourite(photo)}
+                className={`w-full py-4 px-6 rounded-2xl font-bold text-sm flex items-center justify-center gap-3 transition-all duration-300 ${
+                  isFavourited
+                    ? "bg-rose-50 text-rose-500 border border-rose-100"
+                    : "bg-gray-50 text-gray-700 border border-gray-100 hover:border-rose-200 hover:text-rose-500 hover:bg-rose-50/30"
+                }`}
+              >
+                <div className="w-5 h-5">
+                  <HeartIcon filled={isFavourited} />
+                </div>
+                {isFavourited ? "Favourited" : "Add to Favourites"}
+              </button>
+              
+              <button
+                onClick={() => downloadPhoto(photo)}
+                disabled={downloading}
+                className={`w-full py-4 px-6 rounded-2xl font-bold text-sm flex items-center justify-center gap-3 transition-all duration-300 shadow-lg active:scale-95 ${
+                  downloading 
+                    ? "bg-violet-400 cursor-not-allowed text-white/80 shadow-none" 
+                    : "bg-violet-600 text-white hover:bg-violet-700 shadow-violet-200"
+                }`}
+              >
+                {downloading ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    Downloading...
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    Download HD
+                  </>
+                )}
+              </button>
             </div>
           </div>
         </div>

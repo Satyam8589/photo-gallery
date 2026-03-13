@@ -9,6 +9,7 @@ import LoadingSkeleton from "./LoadingSkeleton";
 import ErrorMessage from "./ErrorMessage";
 import PhotoModal from "./PhotoModal";
 import { useState } from "react";
+import usePhotoSearch from "../hooks/usePhotoSearch";
 
 const Gallery = ({ searchQuery, showFavourites, selectedPhoto, onPhotoSelect }) => {
 
@@ -40,16 +41,10 @@ const Gallery = ({ searchQuery, showFavourites, selectedPhoto, onPhotoSelect }) 
     dispatch({ type: "TOGGLE_FAVOURITE", payload: photo });
   }, []);
 
-  const filteredPhotos = useMemo(() => {
-    const query = searchQuery.trim().toLowerCase();
-    const base = showFavourites ? favourites : photos;
-    if (!query) return base;
-    return base.filter((photo) =>
-      photo.author.toLowerCase().includes(query)
-    );
-  }, [photos, searchQuery, showFavourites, favourites]);
+  const basePhotos = showFavourites ? favourites : photos;
 
-  // Subset of photos to actually display
+  const filteredPhotos = usePhotoSearch(basePhotos, searchQuery);
+
   const displayedPhotos = useMemo(() => {
     return filteredPhotos.slice(0, visibleCount);
   }, [filteredPhotos, visibleCount]);
@@ -144,6 +139,8 @@ const Gallery = ({ searchQuery, showFavourites, selectedPhoto, onPhotoSelect }) 
       <PhotoModal 
         photo={selectedPhoto} 
         onClose={() => onPhotoSelect(null)} 
+        isFavourited={selectedPhoto && favourites.some((fav) => fav.id === selectedPhoto.id)}
+        onToggleFavourite={handleToggleFavourite}
       />
     </div>
   );
