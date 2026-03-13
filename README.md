@@ -1,16 +1,63 @@
-# React + Vite
+# 📸 Celebrare Photo Gallery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium, high-performance Photo Gallery web application built with **React**, **Vite**, and **Tailwind CSS**. This project was developed as a pre-screening assignment for the Celebrare Frontend Internship.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Dynamic Data Fetching**: Fetches 30 high-quality photos from the Picsum Photos API on load.
+- **Real-time Search Filter**: Instant filtering by photographer name using `useMemo` for high performance.
+- **Immersive Viewing Experience**: Click any photo to open a beautiful, distraction-free modal with a "blur-up" loading effect.
+- **Smart Favourites**: Toggle favourites using `useReducer`. Favourites are persisted across page refreshes using `localStorage`.
+- **Responsive & Fluid UI**: Fully optimized for Mobile, Tablet, and Desktop with premium glassmorphism effects and smooth transitions.
+- **Performance Optimized**: Extensive use of `useCallback` and `useMemo` to ensure minimal re-renders and smooth interactions.
 
-## React Compiler
+## 🚀 Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework**: React 19 (Functional Components + Hooks)
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS (Vanilla CSS for custom animations)
+- **State Management**: `useReducer` for complex business logic (Favourites)
+- **Icons**: Custom SVG icons
 
-## Expanding the ESLint configuration
+## 🛠️ Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```text
+photo-gallery/
+├── src/
+│   ├── components/         # UI Components (Gallery, PhotoCard, Modal, etc.)
+│   ├── hooks/              # Custom Hooks (useFetchPhotos)
+│   ├── reducers/           # State logic (favouritesReducer)
+│   ├── App.jsx             # Main logic & Navbar hide/show transitions
+│   ├── main.jsx            # App entry point
+│   └── index.css           # Global styles & Tailwind config
+├── index.html              # SEO optimized metadata
+└── tailwind.config.js      # Custom theme & styling tokens
+```
+
+## 📦 Getting Started
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/photo-gallery.git
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+## 🎥 Video Explanation
+
+The following points are covered in the mandatory screen recording:
+1. **Live Demo**: Showcasing API fetch, real-time search, and persistent favourites.
+2. **Custom Hooks**: Walkthrough of `useFetchPhotos`.
+3. **State Management**: Explanation of why `useReducer` was used over `useState`.
+4. **Performance**: Breakdown of `useCallback` and `useMemo` logic to prevent unnecessary re-renders.
+
+---
+Built with ♥ for Celebrare by [Your Name]
