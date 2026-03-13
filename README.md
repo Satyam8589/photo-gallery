@@ -60,4 +60,4 @@ The following points are covered in the mandatory screen recording:
 4. **Performance**: Breakdown of `useCallback` and `useMemo` logic to prevent unnecessary re-renders.
 
 ---
-Built with ♥ for Celebrare by [Your Name]
+Built with ♥ for Celebrare by Satyam kumar singh
