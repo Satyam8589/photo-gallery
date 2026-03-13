@@ -5,7 +5,7 @@ import {
   loadFavouritesFromStorage,
 } from "../reducers/favouritesReducer";
 import PhotoCard from "./PhotoCard";
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSkeleton from "./LoadingSkeleton";
 import ErrorMessage from "./ErrorMessage";
 import PhotoModal from "./PhotoModal";
 import { useState } from "react";
@@ -43,7 +43,7 @@ const Gallery = ({ searchQuery, showFavourites, selectedPhoto, onPhotoSelect }) 
     );
   }, [photos, searchQuery, showFavourites, favourites]);
 
-  if (loading) return <LoadingSpinner />;
+  if (loading) return <LoadingSkeleton />;
   if (error) return <ErrorMessage message={error} />;
 
   return (
