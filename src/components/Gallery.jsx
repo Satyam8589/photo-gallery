@@ -13,6 +13,12 @@ import { useState } from "react";
 const Gallery = ({ searchQuery, showFavourites, selectedPhoto, onPhotoSelect }) => {
 
   const { photos, loading, error } = useFetchPhotos();
+  const [visibleCount, setVisibleCount] = useState(12);
+
+  // Reset pagination when search or favorites toggle
+  useEffect(() => {
+    setVisibleCount(12);
+  }, [searchQuery, showFavourites]);
 
   const [favourites, dispatch] = useReducer(
     favouritesReducer,
@@ -42,6 +48,11 @@ const Gallery = ({ searchQuery, showFavourites, selectedPhoto, onPhotoSelect }) 
       photo.author.toLowerCase().includes(query)
     );
   }, [photos, searchQuery, showFavourites, favourites]);
+
+  // Subset of photos to actually display
+  const displayedPhotos = useMemo(() => {
+    return filteredPhotos.slice(0, visibleCount);
+  }, [filteredPhotos, visibleCount]);
 
   if (loading) return <LoadingSkeleton />;
   if (error) return <ErrorMessage message={error} />;
@@ -96,9 +107,9 @@ const Gallery = ({ searchQuery, showFavourites, selectedPhoto, onPhotoSelect }) 
 
       <div
         id="photo-grid"
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+        className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5"
       >
-        {filteredPhotos.map((photo) => (
+        {displayedPhotos.map((photo) => (
           <PhotoCard
             key={photo.id}
             photo={photo}
@@ -108,6 +119,27 @@ const Gallery = ({ searchQuery, showFavourites, selectedPhoto, onPhotoSelect }) 
           />
         ))}
       </div>
+
+      {/* Load More Button */}
+      {visibleCount < filteredPhotos.length && (
+        <div className="mt-16 flex justify-center">
+          <button
+            onClick={() => setVisibleCount((prev) => prev + 12)}
+            className="group relative px-8 py-4 bg-white text-gray-900 font-bold rounded-2xl border border-gray-100 hover:border-violet-200 hover:text-violet-600 transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-violet-100/50 flex items-center gap-3 active:scale-95"
+          >
+            Load More Photos
+            <svg 
+              className="w-5 h-5 group-hover:translate-y-1 transition-transform" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor" 
+              strokeWidth={2.5}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        </div>
+      )}
 
       <PhotoModal 
         photo={selectedPhoto} 

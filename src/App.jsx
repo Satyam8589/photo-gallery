@@ -19,13 +19,13 @@ function App() {
         selectedPhoto ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20 gap-4">
+          <div className="flex items-center justify-between h-16 sm:h-20 gap-4">
             {/* Brand Logo */}
             <div 
               className="flex items-center gap-2.5 cursor-pointer group"
               onClick={() => {setSearchQuery(""); setShowFavourites(false);}}
             >
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-violet-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-violet-200 group-hover:scale-105 transition-transform duration-300">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-tr from-violet-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-violet-200 group-hover:scale-105 transition-transform duration-300">
                 <svg viewBox="0 0 24 24" fill="white" className="w-5 h-5">
                   <path d="M6 3a3 3 0 00-3 3v12a3 3 0 003 3h12a3 3 0 003-3V6a3 3 0 00-3-3H6zM5 6a1 1 0 011-1h12a1 1 0 011 1v7.586l-2.293-2.293a1 1 0 00-1.414 0L10 16.586l-1.293-1.293a1 1 0 00-1.414 0L5 17.586V6zm9 3a1 1 0 112 0 1 1 0 01-2 0z" />
                 </svg>
@@ -49,7 +49,7 @@ function App() {
                 placeholder="Search by photographer name..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3.5 rounded-2xl border-none bg-gray-100/50 text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-violet-500/20 focus:bg-white transition-all duration-300 shadow-inner sm:text-sm font-medium"
+                className="w-full pl-10 sm:pl-12 pr-4 py-2 sm:py-3.5 rounded-xl sm:rounded-2xl border-none bg-gray-100/50 text-sm text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-violet-500/20 focus:bg-white transition-all duration-300 shadow-inner font-medium"
               />
               {searchQuery && (
                 <button
@@ -67,7 +67,7 @@ function App() {
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setShowFavourites((prev) => !prev)}
-                className={`h-11 px-5 rounded-2xl flex items-center gap-2.5 text-sm font-bold transition-all duration-300 ${
+                className={`h-9 sm:h-11 px-4 sm:px-5 rounded-xl sm:rounded-2xl flex items-center gap-2.5 text-xs sm:text-sm font-bold transition-all duration-300 ${
                   showFavourites
                     ? "bg-rose-500 text-white shadow-lg shadow-rose-200 border-none scale-105"
                     : "bg-white text-gray-700 border border-gray-100 hover:border-rose-200 hover:text-rose-500 shadow-sm"
@@ -84,8 +84,8 @@ function App() {
       </header>
 
       {/* ── Main Content ── */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
-        <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12 relative z-10">
+        <div className="mb-6 sm:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-2">
             <h1 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">
               {showFavourites ? (
